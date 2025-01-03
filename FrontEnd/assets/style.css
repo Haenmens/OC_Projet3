@@ -84,6 +84,9 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
+
+/****** Navigateur ******/
+
 nav ul {
 	display: flex;
 	align-items: center;
@@ -98,6 +101,9 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
+/****** Intro ******/
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -125,6 +131,44 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+/****** Filtres ******/
+
+.filtres {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 15px;
+}
+
+.filtres input[type="radio"] {
+	display: none;
+}
+
+.filtres label {
+	font-family: 'Syne';
+	border: 2px solid #1D6154;
+	border-radius: 30px;
+	background-color: white;
+	padding: 10px 15px 10px 15px;
+	font-size: 16px;
+	color: #1D6154;
+}
+
+.filtres label:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
+.filtres input[type="radio"]:checked + label {
+	background-color: #1D6154;
+	color: white;
+}
+
+/****** Galerie ******/
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -137,6 +181,9 @@ li:hover {
 	width: 100%;
 
 }
+
+/****** Contact *****/
+
 #contact {
 	width: 50%;
 margin: auto;
