@@ -11,7 +11,7 @@ async function chargerTravaux(categorie) {
             throw new Error(`Erreur travaux, status : ${reponse.status}`);
         }
         travaux = await reponse.json();
-        afficherTravaux(travaux, categorie);
+        afficherTravaux(categorie);
     }
     catch (erreur)
     {
@@ -28,7 +28,7 @@ async function chargerFiltres() {
             throw new Error(`Erreur Categories, status : ${reponse.status}`);
         }
         categories = await reponse.json();
-        afficherCategories(categories);
+        afficherCategories();
     }
     catch (erreur)
     {
@@ -36,7 +36,7 @@ async function chargerFiltres() {
     }
 }
 
-function afficherTravaux(travaux, categorie)
+function afficherTravaux(categorie)
 {
     const divGallerie = document.querySelector(".gallery");
 
@@ -63,7 +63,7 @@ function afficherTravaux(travaux, categorie)
     }
 }
 
-function afficherCategories(categories)
+function afficherCategories()
 {
     for (let i = 0; i < categories.length; i++)
         {
@@ -90,6 +90,26 @@ function afficherCategories(categories)
         }
 }
 
+function afficherModale()
+{
+    modale = document.getElementById("modale");
+    photos = document.getElementById("photos");
+
+    for (let i = 0; i < travaux.length; i++)
+    {
+        travail = travaux[i];
+        
+        const elementImage = document.createElement("img");
+
+        elementImage.src = travail.imageUrl;
+
+        photos.appendChild(elementImage);
+    }
+
+    modale.classList.remove("cachee");
+    modale.classList.add("modale")
+}
+
 function changerCategorieAffichee(input)
 {
     if (input.id == categorieAffichee) return;
@@ -103,8 +123,33 @@ function changerCategorieAffichee(input)
         categorieAffichee = input.id;
     }
 
-    chargerTravaux(categorieAffichee);
+    afficherTravaux(categorieAffichee);
+}
+
+function verifierConnexion()
+{
+    if (sessionStorage.token == null) return;
+
+    document.getElementById("login").classList.add("cachee");
+
+    logoutLien = document.getElementById("logout");
+    bandeauEdition = document.getElementById("bandeau-edition");
+    boutonModifier = document.getElementById("bouton-modifier");
+
+    boutonModifier.classList.remove("cachee");
+    boutonModifier.classList.add("bouton-modifier");
+    boutonModifier.addEventListener("click", afficherModale);
+
+    bandeauEdition.classList.remove("cachee");
+    bandeauEdition.classList.add("bandeau-edition");
+
+    logoutLien.classList.remove("cachee");
+    logoutLien.addEventListener("click", function() {
+        sessionStorage.removeItem("token");
+        window.location.assign("index.html");
+    });
 }
 
 chargerTravaux("tous");
 chargerFiltres();
+verifierConnexion();
