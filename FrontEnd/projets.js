@@ -90,10 +90,78 @@ function afficherCategories()
         }
 }
 
+function verifierPhoto(photo)
+{
+    if (photo)
+    {
+        if (photo.type != "image/jpeg" && photo.type != "image/png")
+        {
+            alert("Veuillez sélectionner un fichier de type jpg ou png.")
+        }
+
+        const lecteur = new FileReader();
+        imagePhoto = document.getElementById("formulaire-ajout-image-photo");
+
+        lecteur.addEventListener("load", function () {
+            imagePhoto.setAttribute("src", this.result);
+            imagePhoto.style.width = "auto";
+            imagePhoto.style.height = "150px";
+            document.getElementById("formulaire-ajout-bouton-photo").classList.add("cachee");
+            document.getElementById("formulaire-ajout-prerequis-photo").classList.add("cachee");
+        });
+        lecteur.readAsDataURL(photo);
+    }
+}
+
 function afficherModale()
 {
     modale = document.getElementById("modale");
     photos = document.getElementById("photos");
+    croixImg = document.getElementById("croix-fermeture");
+    boutonPhoto = document.getElementById("input-photo");
+    boutonModifVersAjout = document.getElementById("bouton-modif-vers-ajout");
+    boutonAjoutVersModif = document.getElementById("bouton-ajout-vers-modif");
+
+    modale.addEventListener("click", (event) => {
+        if (event.target == modale)
+        {
+            modale.classList.remove("modale");
+            modale.classList.add("cachee");
+        }
+    });
+
+    croixImg.addEventListener("click", () => {
+        modale.classList.remove("modale");
+        modale.classList.add("cachee");
+    });
+
+    boutonModifVersAjout.addEventListener("click", () => {
+        document.getElementById("fenetre-modale-modif").classList.add("cachee");
+        document.getElementById("fenetre-modale-ajout").classList.remove("cachee");
+        document.getElementById("fenetre-modale-ajout").classList.add("fenetre-modale-ajout");
+    });
+
+    boutonAjoutVersModif.addEventListener("click", () => {
+        document.getElementById("fenetre-modale-modif").classList.remove("cachee");
+        document.getElementById("fenetre-modale-ajout").classList.add("cachee");
+    });
+
+    boutonPhoto.addEventListener("change", () => { verifierPhoto(boutonPhoto.files[0]); });
+
+    photos.addEventListener("wheel", function (event) {
+        const scrollTop = photos.scrollTop;
+        const scrollHauteur = photos.scrollHeight;
+        const clientHauteur = photos.clientHeight;
+        const delta = event.deltaY;
+
+        if ((delta > 0 && scrollTop + clientHauteur >= scrollHauteur) ||
+            (delta < 0 && scrollTop <= 0))
+            {
+                event.preventDefault();
+            }
+    });
+
+    photos.innerHTML = "";
 
     for (let i = 0; i < travaux.length; i++)
     {

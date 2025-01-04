@@ -65,11 +65,38 @@
 	</main>
 
 	<aside id="modale" class="cachee">
-		<div class="fenetre-modif">
-			<h1>Galerie Photo</h1>
-			<div id="photos" class="photos">
+		<div id="fenetre-modale" class="fenetre-modale">
+			<img id="croix-fermeture" class="croix-fermeture" src="./assets/icons/croix.png">
+			<div id="fenetre-modale-modif">
+				<h1>Galerie Photo</h1>
+				<div id="photos" class="photos">
+				</div>
+				<button id="bouton-modif-vers-ajout" class="bouton-submit">Ajouter une photo</button>
 			</div>
-			<button class="bouton-submit">Ajouter une photo</button>
+			<div id="fenetre-modale-ajout" class="cachee">
+				<h1>Ajout photo</h1>
+				<img id="bouton-ajout-vers-modif" class="fleche-gauche" src="assets/icons/fleche_gauche.png">
+				<form id="formulaire-ajout" class="formulaire-ajout">
+					<div class="formulaire-ajout-photo">
+						<img id="formulaire-ajout-image-photo" src="./assets/icons/image.png">
+						<label id="formulaire-ajout-bouton-photo" for="input-photo">+ Ajouter photo</label>
+						<input id="input-photo" type="file" accept="image/*" style="visibility: collapse;" required>
+						<p id="formulaire-ajout-prerequis-photo">jpg, png: 4mo max</p>
+					</div>
+					<div class="formulaire-ajout-informations">
+						<label for="titre">Titre</label>
+						<input id="titre" type="text" required>
+						<label for="categorie">Catégorie</label>
+						<select id="categorie" required>
+							<option value="" hidden selected></option>
+							<option>Test</option>
+							<option>Test</option>
+							<option>Test</option>
+						</select>
+					</div>
+					<button type="submit" class="formulaire-ajout-bouton-submit">Valider</button>
+				</form>
+			</div>
 		</div>
 	</aside>
 

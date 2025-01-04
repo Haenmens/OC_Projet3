@@ -280,17 +280,17 @@ margin: auto;
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-.fenetre-modif {
+.fenetre-modale {
 	position: absolute;
 	top: 20%;
-	left: 32%;
-	height: 60%;
-	width: 35%;
+	left: 35%;
+	height: 600px;
+	width: 600px;
 	background-color: white;
 	border-radius: 10px;
 }
 
-.fenetre-modif h1 {
+.fenetre-modale h1 {
 	text-align: center;
 	margin-top: 10%;
 	color: black;
@@ -298,10 +298,28 @@ margin: auto;
 	font-family: "Work sans";
 }
 
+.croix-fermeture {
+	position: absolute;
+	top: 40px;
+	right: 40px;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+}
+
+.fleche-gauche {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
 .photos {
 	margin: auto;
+	height: 300px;
 	width: 70%;
-	height: 50%;
 	border-bottom: 1px solid grey;
 	margin-top: 50px;
 	margin-bottom: 50px;
@@ -310,13 +328,20 @@ margin: auto;
 	gap: 20px 10px;
 	padding-bottom: 40px;
 	overflow: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+/*** Scrollbar ***/
+.photos::-webkit-scrollbar {
+	display: none;
 }
 
 .photos img {
 	width: 100%;
 }
 
-.fenetre-modif .bouton-submit {
+.fenetre-modale .bouton-submit {
 	padding: 8px 20px 8px 20px;
 	color: white;
 	font-weight: 100;
@@ -325,6 +350,95 @@ margin: auto;
 	border: none;
 	display: block;
 	margin: auto;
+	cursor: pointer;
+}
+
+.fenetre-modale-ajout {
+	width: 70%;
+	margin: auto;
+}
+
+.formulaire-ajout {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.formulaire-ajout-photo {
+	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: rgb(232, 241, 246);
+}
+
+.formulaire-ajout-photo img {
+	padding: 20px 0px 10px 0px;
+	width: 68px;
+	height: 60px;
+	margin: auto;
+}
+
+.formulaire-ajout-photo label {
+	cursor: pointer;
+	border: none;
+	border-radius: 30px;
+	background-color: rgb(203, 214, 220);
+	color: rgb(48, 102, 133);
+	margin: auto;
+	padding: 8px 30px 8px 30px;
+	font-size: 14px;
+	font-family: "Work sans";
+	font-weight: 400;
+}
+
+.formulaire-ajout-photo p {
+	margin: 10px auto 20px;
+	font-size: 10px;
+}
+
+.formulaire-ajout-informations {
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 40px;
+	border-bottom: 1px solid rgb(168, 168, 168);
+	background-color: white;
+}
+
+.formulaire-ajout-informations label {
+	font-size: 14px;
+}
+
+.formulaire-ajout-informations input, select {
+	border: none;
+	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+	background-color: white;
+	height: 40px;
+	font-family: 'Work sans';
+	font-size: 16px;
+	padding: 5px;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.formulaire-ajout-informations option {
+	padding: 5px;
+}
+
+.formulaire-ajout-bouton-submit {
+	border: none;
+	border-radius: 30px;
+	background-color: rgb(167, 167, 167);
+	color: white;
+	font-family: "Syne";
+	font-size: 15px;
+	padding: 10px 100px 10px 100px;
+	margin: auto;
+	cursor: not-allowed;
+}
+
+.bouton-ajouter-autorise {
+	background-color: #1D6154;
 	cursor: pointer;
 }
 
