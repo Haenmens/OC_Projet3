@@ -76,25 +76,22 @@
 			<div id="fenetre-modale-ajout" class="cachee">
 				<h1>Ajout photo</h1>
 				<img id="bouton-ajout-vers-modif" class="fleche-gauche" src="assets/icons/fleche_gauche.png">
-				<form id="formulaire-ajout" class="formulaire-ajout">
+				<form id="formulaire-ajout" class="formulaire-ajout" action="upload" enctype="multipart/form-data">
 					<div class="formulaire-ajout-photo">
 						<img id="formulaire-ajout-image-photo" src="./assets/icons/image.png">
 						<label id="formulaire-ajout-bouton-photo" for="input-photo">+ Ajouter photo</label>
-						<input id="input-photo" type="file" accept="image/*" style="visibility: collapse;" required>
+						<input id="input-photo" name="image" type="file" accept="image/*" style="visibility: collapse;" tabindex="-1" required>
 						<p id="formulaire-ajout-prerequis-photo">jpg, png: 4mo max</p>
 					</div>
 					<div class="formulaire-ajout-informations">
 						<label for="titre">Titre</label>
-						<input id="titre" type="text" required>
+						<input id="titre" name="title" type="text" required>
 						<label for="categorie">Catégorie</label>
-						<select id="categorie" required>
+						<select id="formulaire-ajout-categorie" name="category" required>
 							<option value="" hidden selected></option>
-							<option>Test</option>
-							<option>Test</option>
-							<option>Test</option>
 						</select>
 					</div>
-					<button type="submit" class="formulaire-ajout-bouton-submit">Valider</button>
+					<button id="bouton-formulaire-ajout" type="submit" class="formulaire-ajout-bouton-submit">Valider</button>
 				</form>
 			</div>
 		</div>

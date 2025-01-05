@@ -337,8 +337,23 @@ margin: auto;
 	display: none;
 }
 
-.photos img {
+.fenetre-modale-modif-photo {
 	width: 100%;
+}
+
+.photos-icone-supprimer {
+	height: 15px;
+	width: 15px;
+	background-color: black;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	padding: 5px;
+}
+
+.photos-icone-supprimer:hover {
+	cursor: pointer;
+	background-color: rgb(100, 100, 100);
 }
 
 .fenetre-modale .bouton-submit {
@@ -421,8 +436,9 @@ margin: auto;
 	margin-top: 5px;
 }
 
-.formulaire-ajout-informations option {
+.formulaire-ajout-informations select option {
 	padding: 5px;
+	font-family: 'Work sans';
 }
 
 .formulaire-ajout-bouton-submit {
@@ -440,6 +456,12 @@ margin: auto;
 .bouton-ajouter-autorise {
 	background-color: #1D6154;
 	cursor: pointer;
+}
+
+.bouton-ajouter-autorise:hover {
+	background-color: white;
+	border: 1px solid #1D6154;
+	color: #1D6154;
 }
 
 /****** Footer ******/
