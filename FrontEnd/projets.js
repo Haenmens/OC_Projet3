@@ -117,7 +117,9 @@ function verifierPhoto(photo)
 
 function verifierValiditeFormulaire(formulaire)
 {
-    if (formulaire.checkValidity())
+    const donneesFormulaire = new FormData(formulaire);
+
+    if (formulaire.checkValidity() && donneesFormulaire.get("image").size > 0)
     {
         document.getElementById("bouton-formulaire-ajout").classList.add("bouton-ajouter-autorise");
     }
@@ -131,7 +133,18 @@ async function ajouterPhotoBaseDeDonnee(formulaire)
 {
     const donneesFormulaire = new FormData(formulaire);
 
-    console.log(donneesFormulaire);
+    if (donneesFormulaire.get("image").size == 0)
+    {
+        alert("Une image valide doit être sélectionnée !");
+        return;
+    }
+
+    else if (donneesFormulaire.get("image").size > 4194304)
+    {
+        alert("L'image sélectionnée pèse plus de 4mo, veuillez en réduire le poids et réessayer.");
+        resetPhotoFormulaire(formulaire);
+        return;
+    }
 
     try {
         const reponse = await fetch("http://localhost:5678/api/works",
@@ -184,6 +197,18 @@ async function supprimerPhotoBaseDeDonnee(id)
     catch (erreur) {
         console.log("Erreur dans la suppression' : ", erreur);
     }
+}
+
+function resetPhotoFormulaire(formulaire)
+{
+    imagePhoto = document.getElementById("formulaire-ajout-image-photo");
+
+    imagePhoto.setAttribute("src", "assets/icons/image.png");
+    imagePhoto.style.width = "68px";
+    imagePhoto.style.height = "60px";
+    document.getElementById("formulaire-ajout-bouton-photo").classList.remove("cachee");
+    document.getElementById("formulaire-ajout-prerequis-photo").classList.remove("cachee");
+    document.getElementById("bouton-formulaire-ajout").classList.remove("bouton-ajouter-autorise");
 }
 
 function resetFormulaire(formulaire)
@@ -358,15 +383,15 @@ function verifierConnexion()
     bandeauEdition.classList.add("bandeau-edition");
 
     logoutLien.classList.remove("cachee");
+
+    logoutLien.addEventListener("click", function() {
+        sessionStorage.removeItem("token");
+        window.location.assign("index.html");
+    });
+    
+    boutonModifier.addEventListener("click", afficherModale);
 }
 
 chargerTravaux("tous");
 chargerFiltres();
 verifierConnexion();
-
-logoutLien.addEventListener("click", function() {
-    sessionStorage.removeItem("token");
-    window.location.assign("index.html");
-});
-
-boutonModifier.addEventListener("click", afficherModale);
