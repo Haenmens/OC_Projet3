@@ -48,10 +48,13 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: #FFFEF8;
+}
+body header, main {
+	max-width: 1140px;
+	margin:auto;
 }
 header {
 	display: flex;
@@ -90,6 +93,7 @@ h2{
 .bandeau-edition {
 	background-color: black;
 	color: white;
+	font-size: 16px;
 	padding: 20px;
 	display: flex;
 	align-items: center;
@@ -99,10 +103,14 @@ h2{
 .bandeau-edition img {
 	width: 15px;
 	height: 15px;
-	padding-right: 7px;
+	padding-right: 10px;
 }
 
 /****** Navigateur ******/
+
+header {
+	padding-top: 50px;
+}
 
 nav a {
 	color: black;
@@ -113,7 +121,7 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-
+	gap: 44px;
 }
 nav li {
 	padding: 0 10px;
@@ -126,6 +134,11 @@ li a:hover {
 
 .cachee {
 	display: none;
+}
+
+nav img {
+	width: 22px;
+	height: 22px;
 }
 
 /****** Intro ******/
@@ -159,12 +172,16 @@ li a:hover {
 }
 
 .bouton-modifier {
-	font-size: 16px;
+	font-size: 14px;
 	font-family: "Work sans";
 	color: black;
 	font-weight: 100;
 	padding-left: 15px;
 	cursor: pointer;
+}
+
+.bouton-modifier:hover {
+	color: #B1663C;
 }
 
 .bouton-modifier img {
@@ -228,7 +245,7 @@ li a:hover {
 
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact > * {
 	text-align: center;
@@ -284,8 +301,8 @@ margin: auto;
 	position: absolute;
 	top: 20%;
 	left: 35%;
-	height: 600px;
-	width: 600px;
+	height: 688px;
+	width: 630px;
 	background-color: white;
 	border-radius: 10px;
 }
@@ -318,14 +335,14 @@ margin: auto;
 
 .photos {
 	margin: auto;
-	height: 300px;
+	height: 400px;
 	width: 70%;
 	border-bottom: 1px solid grey;
 	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 40px;
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
-	gap: 20px 10px;
+	gap: 10px;
 	padding-bottom: 40px;
 	overflow: auto;
 	-ms-overflow-style: none;
@@ -497,7 +514,6 @@ footer nav ul {
 	margin: auto;
 	text-align: left;
 	width: 40%;
-	margin-bottom: 100px;
 }
 
 .page-login h2, input {
@@ -546,4 +562,16 @@ footer nav ul {
 
 .page-login form a:hover {
 	color: #B1663C;
+}
+
+footer {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: auto;
+	background-color: white;
+}
+
+.page-login footer {
+	bottom: 0;
 }
