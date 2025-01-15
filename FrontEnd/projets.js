@@ -39,7 +39,7 @@ async function chargerFiltres() {
 
 function afficherTravaux(categorie)
 {
-    const divGallerie = document.querySelector(".gallery");
+    const divGallerie = document.getElementById("galerie");
 
     divGallerie.innerHTML = "";
 
@@ -70,7 +70,7 @@ function afficherCategories()
         {
             const categorie = categories[i];
     
-            const ulFiltres = document.querySelector(".filtres");
+            const ulFiltres = document.getElementById("filtres");
             
             const elementListe = document.createElement("li");
             const elementInput = document.createElement("input");
@@ -238,7 +238,6 @@ function afficherFormulaireAjout()
 {
     document.getElementById("fenetre-modale-modif").classList.add("cachee");
     document.getElementById("fenetre-modale-ajout").classList.remove("cachee");
-    document.getElementById("fenetre-modale-ajout").classList.add("fenetre-modale-ajout");
 
     formulaireAjoutCategories = document.getElementById("formulaire-ajout-categorie");
     formulaireAjoutCategories.innerHTML = '<option value="" hidden selected></option>';
@@ -272,10 +271,10 @@ function afficherPhotosModale()
         elementDiv.style = "position: relative;";
 
         elementImage.src = travail.imageUrl;
-        elementImage.classList.add("fenetre-modale-modif-photo");
+        elementImage.classList.add("w100");
 
         elementIconeSupprimer.src = "assets/icons/poubelle.png";
-        elementIconeSupprimer.classList.add("photos-icone-supprimer");
+        elementIconeSupprimer.classList.add("icone-supprimer");
         elementIconeSupprimer.addEventListener("click", () => {
             supprimerPhotoBaseDeDonnee(id);
         });
@@ -304,6 +303,10 @@ function afficherModale()
                 fermerModale(modale, formulaireAjout);
             }
         });
+        
+        modale.addEventListener("wheel", (event) => {
+            event.preventDefault();
+        });
 
         croixImg.addEventListener("click", () => {
             fermerModale(modale, formulaireAjout);
@@ -328,11 +331,12 @@ function afficherModale()
             ajouterPhotoBaseDeDonnee(formulaireAjout);
         });
 
-        photos.addEventListener("wheel", function (event) {
+        photos.addEventListener("wheel", (event) => {
             const scrollTop = photos.scrollTop;
             const scrollHauteur = photos.scrollHeight;
             const clientHauteur = photos.clientHeight;
             const delta = event.deltaY;
+            event.stopPropagation();
 
             if ((delta > 0 && scrollTop + clientHauteur >= scrollHauteur) ||
                 (delta < 0 && scrollTop <= 0))
@@ -347,7 +351,6 @@ function afficherModale()
     afficherPhotosModale();
 
     modale.classList.remove("cachee");
-    modale.classList.add("modale")
 }
 
 function changerCategorieAffichee(input)
@@ -377,10 +380,8 @@ function verifierConnexion()
     boutonModifier = document.getElementById("bouton-modifier");
 
     boutonModifier.classList.remove("cachee");
-    boutonModifier.classList.add("bouton-modifier");
 
     bandeauEdition.classList.remove("cachee");
-    bandeauEdition.classList.add("bandeau-edition");
 
     logoutLien.classList.remove("cachee");
 

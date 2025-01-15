@@ -52,10 +52,7 @@ body {
 	font-size: 14px;
 	background-color: #FFFEF8;
 }
-body header, main {
-	max-width: 1140px;
-	margin:auto;
-}
+
 header {
 	display: flex;
 	justify-content: space-between;
@@ -88,29 +85,140 @@ h2{
 	color: #1D6154
 }
 
+.flex {
+    display: flex;
+}
+
+.f1 {
+	flex: 1;
+}
+
+.f-col {
+    flex-direction: column;
+}
+
+.f-row {
+    flex-direction: row;
+}
+
+.f-wrap {
+    flex-wrap: wrap;
+}
+
+.jc-ctr {
+    justify-content: center;
+}
+
+.jc-sb {
+    justify-content: space-between;
+}
+
+.algni-ctr {
+    align-items: center;
+}
+
+.mgn-auto {
+    margin: auto;
+}
+
+.mgn-0 {
+    margin: 0;
+}
+
+.mgn-b0 {
+    margin-bottom: 0;
+}
+
+.mgn-t50 {
+	margin-top: 50px;
+}
+
+.pdn-0 {
+    padding: 0;
+}
+
+.g8 {
+    gap: 8px;
+}
+
+.g10 {
+    gap: 10px;
+}
+
+.g15 {
+    gap: 15px;
+}
+
+.g20 {
+	gap: 20px;
+}
+
+.g30 {
+    gap: 30px;
+}
+
+.g35 {
+    gap: 35px;
+}
+
+.g40 {
+    gap: 40px;
+}
+
+.g50 {
+	gap: 50px;
+}
+
+.curs-p {
+    cursor: pointer;
+}
+
+.h100 {
+    height: 100%;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.mwidth-1000 {
+	max-width: 1000px;
+}
+
+.mwidth-1140 {
+	max-width: 1140px;
+}
+
+.mwidth-1440 {
+	max-width: 1440px;
+}
+
+.cachee {
+	display: none;
+}
+
 /*********** Page principale ************/
 
-.bandeau-edition {
+/****** Header ******/
+
+#bandeau-edition {
 	background-color: black;
 	color: white;
 	font-size: 16px;
 	padding: 20px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 
-.bandeau-edition img {
+#bandeau-edition img {
 	width: 15px;
 	height: 15px;
 	padding-right: 10px;
 }
 
-/****** Navigateur ******/
-
 header {
-	padding-top: 50px;
+	padding-bottom: 100px;
 }
+
+/****** Navigateur ******/
 
 nav a {
 	color: black;
@@ -118,11 +226,9 @@ nav a {
 }
 
 nav ul {
-	display: flex;
-	align-items: center;
 	list-style-type: none;
-	gap: 44px;
 }
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
@@ -132,10 +238,6 @@ li a:hover {
 	color: #B1663C;
 }
 
-.cachee {
-	display: none;
-}
-
 nav img {
 	width: 22px;
 	height: 22px;
@@ -143,22 +245,11 @@ nav img {
 
 /****** Intro ******/
 
-#introduction {
-	display: flex;
-	align-items: center;
-}
-#introduction figure {
-	flex: 1
-}
 #introduction img {
 	display: block;
-	margin: auto;
 	width: 80%;
 }
 
-#introduction article {
-	flex: 1
-}
 #introduction h2 {
 	margin-bottom: 1em;
 }
@@ -171,20 +262,19 @@ nav img {
 	margin-bottom: 1em;
 }
 
-.bouton-modifier {
+#bouton-modifier {
 	font-size: 14px;
 	font-family: "Work sans";
 	color: black;
 	font-weight: 100;
 	padding-left: 15px;
-	cursor: pointer;
 }
 
-.bouton-modifier:hover {
+#bouton-modifier:hover {
 	color: #B1663C;
 }
 
-.bouton-modifier img {
+#bouton-modifier img {
 	height: 15px;
 	width: 15px;
 	padding-right: 7px;
@@ -192,20 +282,16 @@ nav img {
 
 /****** Filtres ******/
 
-.filtres {
+#filtres {
 	margin-top: 50px;
 	margin-bottom: 50px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	gap: 15px;
 }
 
-.filtres input[type="radio"] {
+#filtres input[type="radio"] {
 	display: none;
 }
 
-.filtres label {
+#filtres label {
 	font-family: 'Syne';
 	border: 2px solid #1D6154;
 	border-radius: 30px;
@@ -215,30 +301,25 @@ nav img {
 	color: #1D6154;
 }
 
-.filtres label:hover {
+#filtres label:hover {
 	background-color: #1D6154;
 	color: white;
 	cursor: pointer;
 }
 
-.filtres input[type="radio"]:checked + label {
+#filtres input[type="radio"]:checked + label {
 	background-color: #1D6154;
 	color: white;
 }
 
+
 /****** Galerie ******/
-
-.gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+#galerie figure {
+	width: calc(33% - 10px);
 }
-
-.gallery img {
+#galerie img {
 	width: 100%;
-
+	height: 45vh;
 }
 
 /****** Contact *****/
@@ -288,34 +369,32 @@ nav img {
 
 /****** Modale ******/
 
-.modale {
+#modale {
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: 100%;
-	width: 100%;
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-.fenetre-modale {
-	position: absolute;
-	top: 20%;
-	left: 35%;
-	height: 688px;
-	width: 630px;
+#fenetre-modale {
+	position: relative;
+	margin: 15vh 25vw;
+	height: 70vh;
+	width: 50vw;
+	max-width: 700px;
 	background-color: white;
 	border-radius: 10px;
 }
 
-.fenetre-modale h1 {
+#fenetre-modale h2 {
+	padding-top: 80px;
 	text-align: center;
-	margin-top: 10%;
 	color: black;
 	font-weight: 100;
 	font-family: "Work sans";
 }
 
-.croix-fermeture {
+#croix-fermeture {
 	position: absolute;
 	top: 40px;
 	right: 40px;
@@ -324,7 +403,7 @@ nav img {
 	cursor: pointer;
 }
 
-.fleche-gauche {
+#bouton-ajout-vers-modif {
 	position: absolute;
 	top: 40px;
 	left: 40px;
@@ -333,7 +412,7 @@ nav img {
 	cursor: pointer;
 }
 
-.photos {
+#photos {
 	margin: auto;
 	height: 400px;
 	width: 70%;
@@ -350,15 +429,11 @@ nav img {
 }
 
 /*** Scrollbar ***/
-.photos::-webkit-scrollbar {
+#photos::-webkit-scrollbar {
 	display: none;
 }
 
-.fenetre-modale-modif-photo {
-	width: 100%;
-}
-
-.photos-icone-supprimer {
+.icone-supprimer {
 	height: 15px;
 	width: 15px;
 	background-color: black;
@@ -368,80 +443,63 @@ nav img {
 	padding: 5px;
 }
 
-.photos-icone-supprimer:hover {
+.icone-supprimer:hover {
 	cursor: pointer;
 	background-color: rgb(100, 100, 100);
 }
 
-.fenetre-modale .bouton-submit {
-	padding: 8px 20px 8px 20px;
+#fenetre-modale .bouton-submit {
+	padding: 10px 50px;
 	color: white;
-	font-weight: 100;
-	font-size: 14px;
-	font-family: "Work sans";
+	width: auto;
 	border: none;
 	display: block;
 	margin: auto;
 	cursor: pointer;
 }
 
-.fenetre-modale-ajout {
+#fenetre-modale-ajout {
 	width: 70%;
-	margin: auto;
 }
 
-.formulaire-ajout {
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
-}
-
-.formulaire-ajout-photo {
+#ajout-photo {
 	margin-top: 40px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	background-color: rgb(232, 241, 246);
 }
 
-.formulaire-ajout-photo img {
+#ajout-photo img {
 	padding: 20px 0px 10px 0px;
 	width: 68px;
 	height: 60px;
-	margin: auto;
 }
 
-.formulaire-ajout-photo label {
-	cursor: pointer;
+#ajout-photo label {
 	border: none;
 	border-radius: 30px;
 	background-color: rgb(203, 214, 220);
 	color: rgb(48, 102, 133);
-	margin: auto;
 	padding: 8px 30px 8px 30px;
 	font-size: 14px;
 	font-family: "Work sans";
 	font-weight: 400;
 }
 
-.formulaire-ajout-photo p {
+#ajout-photo p {
 	margin: 10px auto 20px;
 	font-size: 10px;
 }
 
-.formulaire-ajout-informations {
-	display: flex;
-	flex-direction: column;
+#ajout-infos {
 	padding-bottom: 40px;
 	border-bottom: 1px solid rgb(168, 168, 168);
 	background-color: white;
 }
 
-.formulaire-ajout-informations label {
+#ajout-infos label {
 	font-size: 14px;
 }
 
-.formulaire-ajout-informations input, select {
+#ajout-infos input, select {
 	border: none;
 	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 	background-color: white;
@@ -453,12 +511,12 @@ nav img {
 	margin-top: 5px;
 }
 
-.formulaire-ajout-informations select option {
+#ajout-infos select option {
 	padding: 5px;
 	font-family: 'Work sans';
 }
 
-.formulaire-ajout-bouton-submit {
+#bouton-formulaire-ajout {
 	border: none;
 	border-radius: 30px;
 	background-color: rgb(167, 167, 167);
@@ -466,22 +524,29 @@ nav img {
 	font-family: "Syne";
 	font-size: 15px;
 	padding: 10px 100px 10px 100px;
-	margin: auto;
 	cursor: not-allowed;
 }
 
 .bouton-ajouter-autorise {
-	background-color: #1D6154;
-	cursor: pointer;
+	background-color: #1D6154 !important;
+	cursor: pointer !important;
 }
 
 .bouton-ajouter-autorise:hover {
-	background-color: white;
-	border: 1px solid #1D6154;
-	color: #1D6154;
+	background-color: white !important;
+	border: 1px solid #1D6154 !important;
+	color: #1D6154 !important;
 }
 
 /****** Footer ******/
+
+footer {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: auto;
+	background-color: white;
+}
 
 footer nav ul {
 	display: flex;
@@ -489,26 +554,31 @@ footer nav ul {
 	margin: 2em
 }
 
+footer li:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
 /************ Page login ************/
 
-.page-login nav .login {
+#page-login nav #login {
 	font-weight: bold;
 	cursor: pointer;
 }
 
-.page-login h2 {
+#page-login h2 {
 	margin-top: 100px;
 	text-align: center;
 }
 
-.page-login #message-erreur {
+#page-login #message-erreur {
 	text-align: center;
 	color: red;
 	padding: 20px;
 	font-size: 16px;
 }
 
-.page-login form {
+#page-login form {
 	display: flex;
 	flex-direction: column;
 	margin: auto;
@@ -516,16 +586,16 @@ footer nav ul {
 	width: 40%;
 }
 
-.page-login h2, input {
+#page-login h2, input {
 	margin-bottom: 30px;
 }
 
-.page-login label {
+#page-login label {
 	margin-bottom: 10px;
 	font-size: 16px;
 }
 
-.page-login input {
+#page-login input {
 	border: none;
 	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 	height: 40px;
@@ -535,7 +605,7 @@ footer nav ul {
 	text-align: center;
 }
 
-.page-login button {
+#page-login button {
 	font-family: 'Syne';
 	border: none;
 	border-radius: 30px;
@@ -547,31 +617,23 @@ footer nav ul {
 	cursor: pointer;
 }
 
-.page-login button:hover {
+#page-login button:hover {
 	border: 1px solid #1D6154;
 	background-color: white;
 	color: #1D6154;
 }
 
-.page-login form a {
+#page-login form a {
 	text-decoration: underline;
 	text-align: center;
 	margin-top: 20px;
 	cursor: pointer;
 }
 
-.page-login form a:hover {
+#page-login form a:hover {
 	color: #B1663C;
 }
 
-footer {
-	position: absolute;
-	left: 0;
-	width: 100%;
-	height: auto;
-	background-color: white;
-}
-
-.page-login footer {
+#page-login footer {
 	bottom: 0;
 }

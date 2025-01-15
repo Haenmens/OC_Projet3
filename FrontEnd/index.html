@@ -12,26 +12,28 @@
 	<script src="projets.js" defer></script>
 </head>
 <body>
-	<p id="bandeau-edition" class="bandeau-edition, cachee">
-		<img src="assets/icons/mode_edition.png">Mode édition
-	</p>
-	<header>
-		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-		<nav>
-			<ul>
-				<li><a href="#portfolio">projets</a></li>
-				<li><a href="#contact">contact</a></li>
-				<li><a id="login" href="login.html">login</a><a id="logout" href="index.html" class="cachee">logout</a></li>
-				<li><a href="#"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
-			</ul>
-		</nav>
+	<header class="flex f-col mgn-0 w100">
+		<p id="bandeau-edition" class="flex algni-ctr jc-ctr cachee">
+			<img src="assets/icons/mode_edition.png" alt="Icone édition">Mode édition
+		</p>
+		<div class="flex f-row jc-sb mwidth-1140 mgn-auto mgn-t50 w100">
+			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+			<nav>
+				<ul class="flex algni-ctr g40">
+					<li><a href="#portfolio">projets</a></li>
+					<li><a href="#contact">contact</a></li>
+					<li><a id="login" href="login.html">login</a><a id="logout" href="index.html" class="cachee">logout</a></li>
+					<li><a href="#"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
+				</ul>
+			</nav>
+		</div>
 	</header>
-	<main>
-		<section id="introduction">
-			<figure>
-				<img src="./assets/images/sophie-bluel.png" alt="">
+	<main class="mwidth-1140 mgn-auto flex f-col g50">
+		<section id="introduction" class="flex algni-ctr">
+			<figure class="f1">
+				<img class="mgn-auto" src="./assets/images/sophie-bluel.png" alt="Sophie Bluel">
 			</figure>
-			<article>
+			<article class="f1 w100">
 				<h2>Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
@@ -39,14 +41,14 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets <a id="bouton-modifier" class="cachee"><img src="./assets/icons/mode_edition_noir.png">modifier</a></h2>
-			<ul class="filtres">
+			<h2>Mes Projets <a id="bouton-modifier" class="cachee curs-p"><img src="./assets/icons/mode_edition_noir.png" alt="Icone édition">modifier</a></h2>
+			<ul id="filtres" class="flex f-rox jc-ctr g15">
 				<li>
 					<input type="radio" id="tous" name="filtre" value="tous" onclick="changerCategorieAffichee(this)" checked>
 					<label for="tous">Tous</label>
 				</li>
 			</ul>
-			<div class="gallery">
+			<div id="galerie" class="flex f-row f-wrap g20 w100">
 			</div>
 		</section>
 		<section id="contact">
@@ -59,39 +61,39 @@
 				<input type="email" name="email" id="email">
 				<label for="message">Message</label>
 				<textarea name="message" id="message" cols="30" rows="10"></textarea>
-				<input class="bouton-submit" type="submit" value="Envoyer">
+				<input class="bouton-submit curs-p" type="submit" value="Envoyer">
 			</form>
 		</section>
 	</main>
 
-	<aside id="modale" class="cachee">
-		<div id="fenetre-modale" class="fenetre-modale">
-			<img id="croix-fermeture" class="croix-fermeture" src="./assets/icons/croix.png">
-			<div id="fenetre-modale-modif">
-				<h1>Galerie Photo</h1>
-				<div id="photos" class="photos">
+	<aside id="modale" class="cachee h100 w100">
+		<div id="fenetre-modale">
+			<img id="croix-fermeture" src="./assets/icons/croix.png" alt="Croix de fermeture">
+			<div id="fenetre-modale-modif" class="h100 mgn-auto">
+				<h2>Galerie Photo</h2>
+				<div id="photos">
 				</div>
 				<button id="bouton-modif-vers-ajout" class="bouton-submit">Ajouter une photo</button>
 			</div>
-			<div id="fenetre-modale-ajout" class="cachee">
-				<h1>Ajout photo</h1>
-				<img id="bouton-ajout-vers-modif" class="fleche-gauche" src="assets/icons/fleche_gauche.png">
-				<form id="formulaire-ajout" class="formulaire-ajout" action="upload" enctype="multipart/form-data">
-					<div class="formulaire-ajout-photo">
-						<img id="formulaire-ajout-image-photo" src="./assets/icons/image.png">
-						<label id="formulaire-ajout-bouton-photo" for="input-photo">+ Ajouter photo</label>
+			<div id="fenetre-modale-ajout" class="cachee mgn-auto">
+				<h2>Ajout photo</h2>
+				<img id="bouton-ajout-vers-modif" src="assets/icons/fleche_gauche.png" alt="Flèche vers la gauche">
+				<form id="formulaire-ajout" class="flex f-col g30" action="upload" enctype="multipart/form-data">
+					<div id="ajout-photo" class="flex f-col jc-ctr">
+						<img id="formulaire-ajout-image-photo" class="mgn-auto" src="./assets/icons/image.png" alt="Image vierge">
+						<label id="formulaire-ajout-bouton-photo" class="curs-p mgn-auto" for="input-photo">+ Ajouter photo</label>
 						<input id="input-photo" name="image" type="file" accept="image/*" style="visibility: collapse;" tabindex="-1">
 						<p id="formulaire-ajout-prerequis-photo">jpg, png: 4mo max</p>
 					</div>
-					<div class="formulaire-ajout-informations">
+					<div id="ajout-infos" class="flex f-col">
 						<label for="titre">Titre</label>
 						<input id="titre" name="title" type="text" required>
-						<label for="categorie">Catégorie</label>
+						<label for="formulaire-ajout-categorie">Catégorie</label>
 						<select id="formulaire-ajout-categorie" name="category" required>
-							<option value="" hidden selected></option>
+							<option value="" label="Défaut" hidden selected></option>
 						</select>
 					</div>
-					<button id="bouton-formulaire-ajout" type="submit" class="formulaire-ajout-bouton-submit">Valider</button>
+					<button id="bouton-formulaire-ajout" class="mgn-auto" type="submit">Valider</button>
 				</form>
 			</div>
 		</div>
