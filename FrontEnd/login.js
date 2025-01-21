@@ -6,6 +6,12 @@ async function connexion(evenement)
 
     const donneesFormulaire = new FormData(formulaire);
 
+    if (donneesFormulaire.get("email") === "" || donneesFormulaire.get("mot-de-passe") ==="")
+    {
+        document.getElementById("message-erreur").textContent = `“Vous devez entrer un email et un mot de passe valides”`;
+        return;
+    }
+
     informationsUtilisateur = JSON.stringify({ 
         "email" : donneesFormulaire.get("email"), 
         "password" : donneesFormulaire.get("mot-de-passe")

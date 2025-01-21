@@ -173,6 +173,10 @@ h2{
     cursor: pointer;
 }
 
+.c-rouge {
+	color: red;
+}
+
 .h100 {
     height: 100%;
 }
@@ -394,6 +398,44 @@ nav img {
 	font-family: "Work sans";
 }
 
+#popup {
+	position: absolute;
+	display: flex;
+	top: 0;
+	left: 25%;
+	width: 50%;
+	height: 0;
+	transition: height 5s ease-in-out;
+	background-color: rgb(173, 55, 55);
+	overflow: hidden;
+}
+
+#popup p {
+	align-self: center;
+	font-weight: 500;
+	font-size: 16px;
+	color: white;
+}
+
+@keyframes popupModale {
+	0% {
+	height: 0;
+	}
+	25% {
+	height: 50px;
+	}
+	75% {
+	height: 50px;
+	}
+	100% {
+	height: 0;
+	}
+}
+
+.anim {
+	animation: popupModale 5s ease-in-out forwards;
+}
+
 #croix-fermeture {
 	position: absolute;
 	top: 40px;
@@ -579,11 +621,8 @@ footer li:hover {
 }
 
 #page-login form {
-	display: flex;
-	flex-direction: column;
-	margin: auto;
 	text-align: left;
-	width: 40%;
+	max-width: 420px;
 }
 
 #page-login h2, input {

@@ -97,7 +97,9 @@ function verifierPhoto(photo)
     {
         if (photo.type != "image/jpeg" && photo.type != "image/png")
         {
-            alert("Veuillez sélectionner un fichier de type jpg ou png.");
+            popup = document.getElementById("popup");
+            popup.innerHTML = `<p class="flex mgn-auto">L'image doit être au format jpeg ou png</p>`
+            popup.classList.add("anim");
             return;
         }
 
@@ -132,16 +134,19 @@ function verifierValiditeFormulaire(formulaire)
 async function ajouterPhotoBaseDeDonnee(formulaire)
 {
     const donneesFormulaire = new FormData(formulaire);
+    popup = document.getElementById("popup");
 
     if (donneesFormulaire.get("image").size == 0)
     {
-        alert("Une image valide doit être sélectionnée !");
+        popup.innerHTML = '<p class="flex mgn-auto">Une image valide doit être selectionnée</p>'
+        popup.classList.add("anim");
         return;
     }
 
     else if (donneesFormulaire.get("image").size > 4194304)
     {
-        alert("L'image sélectionnée pèse plus de 4mo, veuillez en réduire le poids et réessayer.");
+        popup.innerHTML = `<p class="flex mgn-auto">L'image selectionnée fait plus de 4mo</p>`
+        popup.classList.add("anim");
         resetPhotoFormulaire(formulaire);
         return;
     }
@@ -310,6 +315,10 @@ function afficherModale()
 
         croixImg.addEventListener("click", () => {
             fermerModale(modale, formulaireAjout);
+        });
+
+        document.getElementById("popup").addEventListener("animationend", () => {
+            popup.classList.remove("anim");
         });
 
         boutonModifVersAjout.addEventListener("click", () => {
