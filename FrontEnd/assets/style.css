@@ -85,6 +85,14 @@ h2{
 	color: #1D6154
 }
 
+.bg-erreur {
+	background-color: rgb(173, 55, 55);
+}
+
+.bg-ok {
+	background-color: #1D6154;
+}
+
 .flex {
     display: flex;
 }
@@ -97,8 +105,16 @@ h2{
     flex-direction: column;
 }
 
+.f-col-r {
+	flex-direction: column-reverse;
+}
+
 .f-row {
     flex-direction: row;
+}
+
+.f-row-r {
+	flex-direction: row-reverse;
 }
 
 .f-wrap {
@@ -169,6 +185,10 @@ h2{
 	gap: 50px;
 }
 
+.g100 {
+	gap: 100px;
+}
+
 .curs-p {
     cursor: pointer;
 }
@@ -185,8 +205,8 @@ h2{
     width: 100%;
 }
 
-.mwidth-1000 {
-	max-width: 1000px;
+.mwidth-980 {
+	max-width: 980px;
 }
 
 .mwidth-1140 {
@@ -249,9 +269,16 @@ nav img {
 
 /****** Intro ******/
 
+#introduction figure {
+	width: 55%;
+}
+
+#introduction article {
+	width: 45%;
+}
+
 #introduction img {
-	display: block;
-	width: 80%;
+	width: 100%;
 }
 
 #introduction h2 {
@@ -319,7 +346,7 @@ nav img {
 
 /****** Galerie ******/
 #galerie figure {
-	width: calc(33% - 10px);
+	width: calc((100% - 2 * 20px) / 3);
 }
 #galerie img {
 	width: 100%;
@@ -402,15 +429,15 @@ nav img {
 	position: absolute;
 	display: flex;
 	top: 0;
-	left: 25%;
-	width: 50%;
+	left: 20%;
+	width: 60%;
 	height: 0;
 	transition: height 5s ease-in-out;
-	background-color: rgb(173, 55, 55);
 	overflow: hidden;
 }
 
 #popup p {
+	padding: 10px 20px;
 	align-self: center;
 	font-weight: 500;
 	font-size: 16px;
@@ -422,10 +449,10 @@ nav img {
 	height: 0;
 	}
 	25% {
-	height: 50px;
+	height: 75px;
 	}
 	75% {
-	height: 50px;
+	height: 75px;
 	}
 	100% {
 	height: 0;

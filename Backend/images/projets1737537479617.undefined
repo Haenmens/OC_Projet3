@@ -99,11 +99,8 @@ function verifierPhoto(photo)
         if (photo.type != "image/jpeg" && photo.type != "image/png")
         {
             popup = document.getElementById("popup");
-            popup.classList.remove("bg-ok");
-            popup.classList.add("bg-erreur");
             popup.innerHTML = `<p class="flex mgn-auto">L'image doit être au format jpeg ou png</p>`
             popup.classList.add("anim");
-            document.getElementById("input-photo").value = "";
             typeFilePhoto = false;
             return;
         }
@@ -141,8 +138,6 @@ async function ajouterPhotoBaseDeDonnee(formulaire)
 {
     const donneesFormulaire = new FormData(formulaire);
     popup = document.getElementById("popup");
-    popup.classList.remove("bg-ok");
-    popup.classList.add("bg-erreur");
 
     if (donneesFormulaire.get("image").size == 0)
     {
@@ -159,13 +154,6 @@ async function ajouterPhotoBaseDeDonnee(formulaire)
         return;
     }
 
-    else if (donneesFormulaire.get("title") == "" || donneesFormulaire.get("category") == "")
-    {
-        popup.innerHTML = `<p class="flex mgn-auto">Vous devez renseigner un titre et une catégorie</p>`
-        popup.classList.add("anim");
-        return;
-    }
-
     try {
         const reponse = await fetch("http://localhost:5678/api/works",
             {
@@ -179,12 +167,8 @@ async function ajouterPhotoBaseDeDonnee(formulaire)
         {
             const data = await reponse.json();
             chargerTravaux(categorieAffichee);
-            popup = document.getElementById("popup");
-            popup.classList.remove("bg-erreur");
-            popup.classList.add("bg-ok");
-            popup.innerHTML = `<p class="flex mgn-auto">La photo a bien été ajoutée !</p>`
-            popup.classList.add("anim");
-            resetFormulaire(formulaire);
+            alert(`La photo intitulée : ${donneesFormulaire.get("title")} a bien été ajoutée aux travaux !`);
+            fermerModale(document.getElementById("modale"), formulaire);
         } 
         else
         {
@@ -351,10 +335,7 @@ function afficherModale()
             afficherPhotosModale();
         });
 
-        boutonPhoto.addEventListener("change", () => { 
-            verifierPhoto(boutonPhoto.files[0]);
-            verifierValiditeFormulaire(formulaireAjout);
-        });
+        boutonPhoto.addEventListener("change", () => { verifierPhoto(boutonPhoto.files[0]); });
 
         formulaireAjout.addEventListener("input", () => { verifierValiditeFormulaire(formulaireAjout); });
         formulaireAjout.addEventListener("submit", (event) => { 
