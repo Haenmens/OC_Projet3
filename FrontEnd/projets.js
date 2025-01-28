@@ -1,7 +1,6 @@
 categorieAffichee = "tous";
 travaux = null;
 categories = null;
-premierAffichageModale = true;
 typeFilePhoto = false;
 
 async function chargerTravaux(categorie) {
@@ -326,75 +325,7 @@ function afficherPhotosModale()
 function afficherModale()
 {
     modale = document.getElementById("modale");
-    photos = document.getElementById("photos");
-    croixImg = document.getElementById("croix-fermeture");
-    boutonPhoto = document.getElementById("input-photo");
-    boutonModifVersAjout = document.getElementById("bouton-modif-vers-ajout");
-    boutonAjoutVersModif = document.getElementById("bouton-ajout-vers-modif");
-    formulaireAjout = document.getElementById("formulaire-ajout");
-
-    if (premierAffichageModale)
-    {
-        modale.addEventListener("click", (event) => {
-            if (event.target == modale)
-            {
-                fermerModale(modale, formulaireAjout);
-            }
-        });
-        
-        modale.addEventListener("wheel", (event) => {
-            event.preventDefault();
-        });
-
-        croixImg.addEventListener("click", () => {
-            fermerModale(modale, formulaireAjout);
-        });
-
-        document.getElementById("popup").addEventListener("animationend", () => {
-            popup.classList.remove("anim");
-        });
-
-        boutonModifVersAjout.addEventListener("click", () => {
-            afficherFormulaireAjout();
-        });
-
-        boutonAjoutVersModif.addEventListener("click", () => {
-            document.getElementById("fenetre-modale-modif").classList.remove("cachee");
-            document.getElementById("fenetre-modale-ajout").classList.add("cachee");
-            resetFormulaire(formulaireAjout);
-            afficherPhotosModale();
-        });
-
-        boutonPhoto.addEventListener("change", () => { 
-            verifierPhoto(boutonPhoto.files[0]);
-            verifierValiditeFormulaire(formulaireAjout);
-        });
-
-        formulaireAjout.addEventListener("input", () => { verifierValiditeFormulaire(formulaireAjout); });
-        formulaireAjout.addEventListener("submit", (event) => { 
-            event.preventDefault();
-            ajouterPhotoBaseDeDonnee(formulaireAjout);
-        });
-
-        photos.addEventListener("wheel", (event) => {
-            const scrollTop = photos.scrollTop;
-            const scrollHauteur = photos.scrollHeight;
-            const clientHauteur = photos.clientHeight;
-            const delta = event.deltaY;
-            event.stopPropagation();
-
-            if ((delta > 0 && scrollTop + clientHauteur >= scrollHauteur) ||
-                (delta < 0 && scrollTop <= 0))
-                {
-                    event.preventDefault();
-                }
-        });
-
-        premierAffichageModale = false;
-    }
-
     afficherPhotosModale();
-
     modale.classList.remove("cachee");
 }
 
@@ -412,6 +343,72 @@ function changerCategorieAffichee(input)
     }
 
     afficherTravaux(categorieAffichee);
+}
+
+function initGestionEvenements()
+{
+    modale = document.getElementById("modale");
+    photos = document.getElementById("photos");
+    croixImg = document.getElementById("croix-fermeture");
+    boutonPhoto = document.getElementById("input-photo");
+    boutonModifVersAjout = document.getElementById("bouton-modif-vers-ajout");
+    boutonAjoutVersModif = document.getElementById("bouton-ajout-vers-modif");
+    formulaireAjout = document.getElementById("formulaire-ajout");
+
+    modale.addEventListener("click", (event) => {
+        if (event.target == modale)
+        {
+            fermerModale(modale, formulaireAjout);
+        }
+    });
+    
+    modale.addEventListener("wheel", (event) => {
+        event.preventDefault();
+    });
+
+    croixImg.addEventListener("click", () => {
+        fermerModale(modale, formulaireAjout);
+    });
+
+    document.getElementById("popup").addEventListener("animationend", () => {
+        popup.classList.remove("anim");
+    });
+
+    boutonModifVersAjout.addEventListener("click", () => {
+        afficherFormulaireAjout();
+    });
+
+    boutonAjoutVersModif.addEventListener("click", () => {
+        document.getElementById("fenetre-modale-modif").classList.remove("cachee");
+        document.getElementById("fenetre-modale-ajout").classList.add("cachee");
+        resetFormulaire(formulaireAjout);
+        afficherPhotosModale();
+    });
+
+    boutonPhoto.addEventListener("change", () => { 
+        verifierPhoto(boutonPhoto.files[0]);
+        verifierValiditeFormulaire(formulaireAjout);
+    });
+
+    formulaireAjout.addEventListener("input", () => { verifierValiditeFormulaire(formulaireAjout); });
+    formulaireAjout.addEventListener("submit", (event) => { 
+        event.preventDefault();
+        ajouterPhotoBaseDeDonnee(formulaireAjout);
+    });
+
+    photos.addEventListener("wheel", (event) => {
+        const scrollTop = photos.scrollTop;
+        const scrollHauteur = photos.scrollHeight;
+        const clientHauteur = photos.clientHeight;
+        const delta = event.deltaY;
+        event.stopPropagation();
+
+        if ((delta > 0 && scrollTop + clientHauteur >= scrollHauteur) ||
+            (delta < 0 && scrollTop <= 0))
+            {
+                event.preventDefault();
+            }
+    });
 }
 
 function verifierConnexion()
@@ -436,6 +433,8 @@ function verifierConnexion()
     });
     
     boutonModifier.addEventListener("click", afficherModale);
+
+    initGestionEvenements();
 }
 
 chargerTravaux("tous");
