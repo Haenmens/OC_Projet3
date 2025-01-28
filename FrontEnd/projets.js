@@ -96,12 +96,22 @@ function verifierPhoto(photo)
 {
     if (photo)
     {
+        popup = document.getElementById("popup");
+        popup.classList.remove("bg-ok");
+        popup.classList.add("bg-erreur");
+
         if (photo.type != "image/jpeg" && photo.type != "image/png")
         {
-            popup = document.getElementById("popup");
-            popup.classList.remove("bg-ok");
-            popup.classList.add("bg-erreur");
             popup.innerHTML = `<p class="flex mgn-auto">L'image doit être au format jpeg ou png</p>`
+            popup.classList.add("anim");
+            document.getElementById("input-photo").value = "";
+            typeFilePhoto = false;
+            return;
+        }
+
+        else if (photo.size > 4194304)
+        {
+            popup.innerHTML = `<p class="flex mgn-auto">L'image doit faire moins de 4mo</p>`
             popup.classList.add("anim");
             document.getElementById("input-photo").value = "";
             typeFilePhoto = false;
@@ -258,6 +268,7 @@ function fermerModale(modale, formulaireAjout)
     modale.classList.add("cachee");
     document.getElementById("fenetre-modale-modif").classList.remove("cachee");
     document.getElementById("fenetre-modale-ajout").classList.add("cachee");
+    document.getElementById("popup").classList.remove("anim");
     resetFormulaire(formulaireAjout);
 }
 
