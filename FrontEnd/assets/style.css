@@ -350,7 +350,9 @@ nav img {
 }
 #galerie img {
 	width: 100%;
-	height: 45vh;
+	height: auto;
+	aspect-ratio: 305/407;
+	object-fit: cover;
 }
 
 /****** Contact *****/
@@ -488,13 +490,25 @@ nav img {
 	border-bottom: 1px solid grey;
 	margin-top: 50px;
 	margin-bottom: 40px;
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 	gap: 10px;
 	padding-bottom: 40px;
 	overflow: auto;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
+}
+
+#photos div {
+	width: calc((100% - 4 * 10px) / 5);
+}
+
+.photo-modale {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 305/407;
+	object-fit: cover;
 }
 
 /*** Scrollbar ***/

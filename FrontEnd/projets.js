@@ -127,7 +127,7 @@ function verifierValiditeFormulaire(formulaire)
 {
     const donneesFormulaire = new FormData(formulaire);
 
-    if (formulaire.checkValidity() && donneesFormulaire.get("image").size > 0 && typeFilePhoto)
+    if (formulaire.checkValidity() && donneesFormulaire.get("image").size > 0 && typeFilePhoto && donneesFormulaire.get("title") != "" && donneesFormulaire.get("category") != "")
     {
         document.getElementById("bouton-formulaire-ajout").classList.add("bouton-ajouter-autorise");
     }
@@ -209,6 +209,9 @@ async function supprimerPhotoBaseDeDonnee(id)
 
         if (reponse.ok)
         {
+            popup.innerHTML = `<p class="flex mgn-auto">La photo a bien été supprimée</p>`
+            popup.classList.add("bg-ok");
+            popup.classList.add("anim");
             await chargerTravaux(categorieAffichee);
             afficherPhotosModale();
         } 
@@ -295,7 +298,7 @@ function afficherPhotosModale()
         elementDiv.style = "position: relative;";
 
         elementImage.src = travail.imageUrl;
-        elementImage.classList.add("w100");
+        elementImage.classList.add("photo-modale");
 
         elementIconeSupprimer.src = "assets/icons/poubelle.png";
         elementIconeSupprimer.classList.add("icone-supprimer");
