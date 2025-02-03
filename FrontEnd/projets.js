@@ -1,7 +1,6 @@
 categorieAffichee = "tous";
 travaux = null;
 categories = null;
-typeFilePhoto = false;
 
 async function chargerTravaux(categorie) {
     try 
@@ -48,7 +47,6 @@ function afficherTravaux(categorie)
         const travail = travaux[i];
 
         if (travail.category.name == categorie || categorie == "tous")
-
         {   
             const elementFigure = document.createElement("figure");
             const elementImage = document.createElement("img");
@@ -91,6 +89,22 @@ function afficherCategories()
         }
 }
 
+function changerCategorieAffichee(input)
+{
+    if (input.id == categorieAffichee) return;
+
+    if (input.id == "tous")
+    {
+        categorieAffichee = "tous";
+    }
+    else
+    {
+        categorieAffichee = input.id;
+    }
+
+    afficherTravaux(categorieAffichee);
+}
+
 function verifierPhoto(photo)
 {
     if (photo)
@@ -104,7 +118,6 @@ function verifierPhoto(photo)
             popup.innerHTML = `<p class="flex mgn-auto">L'image doit être au format jpeg ou png</p>`
             popup.classList.add("anim");
             document.getElementById("input-photo").value = "";
-            typeFilePhoto = false;
             return;
         }
 
@@ -113,7 +126,6 @@ function verifierPhoto(photo)
             popup.innerHTML = `<p class="flex mgn-auto">L'image doit faire moins de 4mo</p>`
             popup.classList.add("anim");
             document.getElementById("input-photo").value = "";
-            typeFilePhoto = false;
             return;
         }
 
@@ -128,7 +140,6 @@ function verifierPhoto(photo)
             document.getElementById("formulaire-ajout-prerequis-photo").classList.add("cachee");
         });
         lecteur.readAsDataURL(photo);
-        typeFilePhoto = true;
     }
 }
 
@@ -136,7 +147,7 @@ function verifierValiditeFormulaire(formulaire)
 {
     const donneesFormulaire = new FormData(formulaire);
 
-    if (formulaire.checkValidity() && donneesFormulaire.get("image").size > 0 && typeFilePhoto && donneesFormulaire.get("title") != "" && donneesFormulaire.get("category") != "")
+    if (formulaire.checkValidity() && donneesFormulaire.get("image").size > 0 && donneesFormulaire.get("title") != "" && donneesFormulaire.get("category") != "")
     {
         document.getElementById("bouton-formulaire-ajout").classList.add("bouton-ajouter-autorise");
     }
@@ -327,22 +338,6 @@ function afficherModale()
     modale = document.getElementById("modale");
     afficherPhotosModale();
     modale.classList.remove("cachee");
-}
-
-function changerCategorieAffichee(input)
-{
-    if (input.id == categorieAffichee) return;
-
-    if (input.id == "tous")
-    {
-        categorieAffichee = "tous";
-    }
-    else
-    {
-        categorieAffichee = input.id;
-    }
-
-    afficherTravaux(categorieAffichee);
 }
 
 function initGestionEvenements()
