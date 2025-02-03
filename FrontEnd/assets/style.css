@@ -145,6 +145,10 @@ h2{
     margin-bottom: 0;
 }
 
+.mgn-b100 {
+	margin-bottom: 100px !important;
+}
+
 .mgn-t50 {
 	margin-top: 50px;
 }
@@ -592,6 +596,10 @@ nav img {
 	padding: 5px;
 	text-align: center;
 	margin-top: 5px;
+}
+
+#input-photo {
+	visibility: collapse;
 }
 
 #ajout-infos select option {

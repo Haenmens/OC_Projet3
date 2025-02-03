@@ -2,6 +2,7 @@ categorieAffichee = "tous";
 travaux = null;
 categories = null;
 
+//Récupère et stocke tous les travaux dans la variable travaux en appelant l'API
 async function chargerTravaux(categorie) {
     try 
     {
@@ -19,6 +20,7 @@ async function chargerTravaux(categorie) {
     }
 }
 
+//Récupère et stocke toutes les catégories dans la variable categorie en appelant l'API
 async function chargerFiltres() {
     try 
     {
@@ -36,6 +38,7 @@ async function chargerFiltres() {
     }
 }
 
+//Boucle dans la variable travaux et ajoute ceux dont la catégorie correspond à la variable catégorie affichée comme enfant de l'élément galerie
 function afficherTravaux(categorie)
 {
     const divGallerie = document.getElementById("galerie");
@@ -62,6 +65,7 @@ function afficherTravaux(categorie)
     }
 }
 
+//Boucle dans la variable catégorie et les ajoute comme enfants à l'éléments filtres
 function afficherCategories()
 {
     for (let i = 0; i < categories.length; i++)
@@ -89,6 +93,7 @@ function afficherCategories()
         }
 }
 
+//Appelée lors du clique sur un filtre, change la valeur de la variable categorieAffichee pour correspondre au filtre sélectionné
 function changerCategorieAffichee(input)
 {
     if (input.id == categorieAffichee) return;
@@ -105,6 +110,7 @@ function changerCategorieAffichee(input)
     afficherTravaux(categorieAffichee);
 }
 
+//Lors de l'ajout d'une photo, vérifie que son type et sa taille sont bons avant de la charger
 function verifierPhoto(photo)
 {
     if (photo)
@@ -143,6 +149,7 @@ function verifierPhoto(photo)
     }
 }
 
+//Vérifie la validité de tous les éléments du formulaire d'ajout d'images et change la couleur du bouton ajouter
 function verifierValiditeFormulaire(formulaire)
 {
     const donneesFormulaire = new FormData(formulaire);
@@ -157,6 +164,7 @@ function verifierValiditeFormulaire(formulaire)
     }
 }
 
+//Effectue une dernière vérification de tous les éléments du formulaire avant d'appeler l'API pour ajouter la photo dans la base de donnée
 async function ajouterPhotoBaseDeDonnee(formulaire)
 {
     const donneesFormulaire = new FormData(formulaire);
@@ -217,6 +225,7 @@ async function ajouterPhotoBaseDeDonnee(formulaire)
     }
 }
 
+//Appelle l'API en lui donnant l'id de la photo à supprimer
 async function supprimerPhotoBaseDeDonnee(id) 
 {
     try {
@@ -246,6 +255,7 @@ async function supprimerPhotoBaseDeDonnee(id)
     }
 }
 
+//Enlève l'affichage de la dernière photo ajouter et le réinitialise à son état de départ
 function resetPhotoFormulaire(formulaire)
 {
     imagePhoto = document.getElementById("formulaire-ajout-image-photo");
@@ -258,6 +268,7 @@ function resetPhotoFormulaire(formulaire)
     document.getElementById("bouton-formulaire-ajout").classList.remove("bouton-ajouter-autorise");
 }
 
+//Réinitialise le formulaire à son état initial
 function resetFormulaire(formulaire)
 {
     imagePhoto = document.getElementById("formulaire-ajout-image-photo");
@@ -272,6 +283,7 @@ function resetFormulaire(formulaire)
     formulaire.reset();
 }
 
+//Ferme la modale, réinitialise le formulaire et l'animation du popup
 function fermerModale(modale, formulaireAjout)
 {
     modale.classList.remove("modale");
@@ -282,6 +294,7 @@ function fermerModale(modale, formulaireAjout)
     resetFormulaire(formulaireAjout);
 }
 
+//Affiche la page d'ajout de photo dans la modale et rempli dynamiquement le sélecteur de catégories
 function afficherFormulaireAjout()
 {
     document.getElementById("fenetre-modale-modif").classList.add("cachee");
@@ -302,6 +315,7 @@ function afficherFormulaireAjout()
     }
 }
 
+//Boucle dans travaux pour afficher tous les travaux dans la modale, ajoute également une icone supprimer à chacun
 function afficherPhotosModale()
 {
     photos = document.getElementById("photos");
@@ -333,6 +347,7 @@ function afficherPhotosModale()
     }
 }
 
+//Affiche la modale
 function afficherModale()
 {
     modale = document.getElementById("modale");
@@ -340,6 +355,7 @@ function afficherModale()
     modale.classList.remove("cachee");
 }
 
+//Initialise tous les eventListener liés à la modale
 function initGestionEvenements()
 {
     modale = document.getElementById("modale");
@@ -350,6 +366,7 @@ function initGestionEvenements()
     boutonAjoutVersModif = document.getElementById("bouton-ajout-vers-modif");
     formulaireAjout = document.getElementById("formulaire-ajout");
 
+    //Vérifie que le clic a bien été effectué autour de la modale et si oui, la ferme
     modale.addEventListener("click", (event) => {
         if (event.target == modale)
         {
@@ -357,22 +374,27 @@ function initGestionEvenements()
         }
     });
     
+    //Empêche l'utilisation de la molette dans la modale
     modale.addEventListener("wheel", (event) => {
         event.preventDefault();
     });
 
+    //Ferme la modale au clique sur la croix
     croixImg.addEventListener("click", () => {
         fermerModale(modale, formulaireAjout);
     });
 
+    //Retire la classe anim du popup lorsque son animation est finie
     document.getElementById("popup").addEventListener("animationend", () => {
         popup.classList.remove("anim");
     });
 
+    //Affiche le formulaire d'ajout au clic sur ajouter une photo
     boutonModifVersAjout.addEventListener("click", () => {
         afficherFormulaireAjout();
     });
 
+    //Repasse à l'affichage de la liste des photos au clic sur la flèche vers la gauche
     boutonAjoutVersModif.addEventListener("click", () => {
         document.getElementById("fenetre-modale-modif").classList.remove("cachee");
         document.getElementById("fenetre-modale-ajout").classList.add("cachee");
@@ -380,17 +402,23 @@ function initGestionEvenements()
         afficherPhotosModale();
     });
 
+    //Vérifie les photos et le formulaire à l'ajout d'un élément dans le champs photo
     boutonPhoto.addEventListener("change", () => { 
         verifierPhoto(boutonPhoto.files[0]);
         verifierValiditeFormulaire(formulaireAjout);
     });
 
+    //Vérifie la validité du formulaire au changement des inputs
     formulaireAjout.addEventListener("input", () => { verifierValiditeFormulaire(formulaireAjout); });
+
+    //Appelle la fonction d'ajout de photo au clic sur le bouton de submit du formulaire
     formulaireAjout.addEventListener("submit", (event) => { 
         event.preventDefault();
         ajouterPhotoBaseDeDonnee(formulaireAjout);
     });
 
+    //Permet le scroll uniquement au sein de la liste des photos en vérifiant que le scroll n'excède pas sa taille et empêche la propagation de l'événement pour éviter qu'il
+    //soit annulé par l'eventListener plus haut
     photos.addEventListener("wheel", (event) => {
         const scrollTop = photos.scrollTop;
         const scrollHauteur = photos.scrollHeight;
@@ -406,6 +434,7 @@ function initGestionEvenements()
     });
 }
 
+//Vérifie si un utilisateur est connecté ou non et affiche les informations supplémentaires si l'utilisateur est bien connecté
 function verifierConnexion()
 {
     if (sessionStorage.token == null) return;
@@ -415,6 +444,11 @@ function verifierConnexion()
     logoutLien = document.getElementById("logout");
     bandeauEdition = document.getElementById("bandeau-edition");
     boutonModifier = document.getElementById("bouton-modifier");
+    filtres = document.querySelector("#filtres");
+    titre_portfolio = document.querySelector("#portfolio h2");
+
+    filtres.classList.add("cachee");
+    titre_portfolio.classList.add("mgn-b100");
 
     boutonModifier.classList.remove("cachee");
 
